@@ -22,8 +22,7 @@ export default function Navbar() {
           </Link>
 
           {/* 🔹 Desktop Menu */}
-          
-          <div className={`${isOpen ? "flex" : "hidden"} flex-col md:flex md:flex-row md:space-x-8`}>
+          <div className="hidden md:flex md:flex-row md:space-x-8">
             <Link href="/" className="hover:text-teal-200 transition">Home</Link>
             <Link href="/about" className="hover:text-teal-200 transition">About</Link>
             <Link href="/contact" className="hover:text-teal-200 transition">Contact</Link>
