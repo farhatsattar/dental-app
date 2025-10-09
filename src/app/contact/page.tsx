@@ -28,7 +28,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800">Our Location</h3>
                     <p className="text-gray-600">
-                      Dental surgery clinic, 4L-Ghazali Road, Asghar Hospital basement, Samanabad, Lahore.
+                      Dental surgery clinic, 3L-Ghazali Road, Asghar Hospital basement, Samanabad, Lahore.
                     </p>
                   </div>
                 </div>
