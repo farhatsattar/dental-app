@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaCalendarAlt, FaUser, FaTooth, FaClock, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaTooth, FaClock, FaEnvelope, FaPhone, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
 
 export default function AppointmentPage() {
   const [formData, setFormData] = useState({
@@ -46,35 +46,41 @@ export default function AppointmentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        {/* Appointment Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-teal-800 mb-4">Book an Appointment</h1>
-          <div className="w-20 h-1 bg-teal-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-dental-primary to-dental-accent text-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book an Appointment</h1>
+          <p className="text-xl max-w-3xl mx-auto text-dental-secondary">
             Schedule your next dental visit with us. We'll confirm your appointment via email or phone within 24 hours.
           </p>
         </div>
+      </section>
 
+      <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Appointment Form */}
           <div className="lg:w-2/3">
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="card p-8">
               {submitted ? (
-                <div className="bg-teal-100 border border-teal-400 text-teal-700 px-4 py-8 rounded-lg text-center">
+                <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-8 rounded-xl text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="bg-green-100 p-3 rounded-full">
+                      <FaCheck className="text-green-600 text-xl" />
+                    </div>
+                  </div>
                   <h2 className="text-2xl font-bold mb-4">Appointment Request Received!</h2>
-                  <p className="mb-4">Thank you for scheduling with us. We will contact you shortly to confirm your appointment.</p>
-                  <p className="font-medium">We look forward to seeing you at our clinic.</p>
+                  <p className="mb-4 text-green-700">Thank you for scheduling with us. We will contact you shortly to confirm your appointment.</p>
+                  <p className="font-medium text-green-700">We look forward to seeing you at our clinic.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-6">Schedule Your Visit</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Schedule Your Visit</h2>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div>
-                      <label htmlFor="name" className="flex text-gray-700 mb-2 items-center">
-                        <FaUser className="mr-2 text-teal-600" /> Full Name
+                      <label htmlFor="name" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaUser className="mr-2 text-dental-primary" /> Full Name *
                       </label>
                       <input
                         type="text"
@@ -82,15 +88,15 @@ export default function AppointmentPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         placeholder="Your full name"
                         required
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="flex text-gray-700 mb-2 items-center">
-                        <FaPhone className="mr-2 text-teal-600" /> Phone Number
+                      <label htmlFor="phone" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaPhone className="mr-2 text-dental-primary" /> Phone Number *
                       </label>
                       <input
                         type="tel"
@@ -98,15 +104,15 @@ export default function AppointmentPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         placeholder="Your phone number"
                         required
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="flex text-gray-700 mb-2 items-center">
-                        <FaEnvelope className="mr-2 text-teal-600" /> Email Address
+                      <label htmlFor="email" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaEnvelope className="mr-2 text-dental-primary" /> Email Address *
                       </label>
                       <input
                         type="email"
@@ -114,22 +120,22 @@ export default function AppointmentPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         placeholder="Your email address"
                         required
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="service" className="flex text-gray-700 mb-2 items-center">
-                        <FaTooth className="mr-2 text-teal-600" /> Service Required
+                      <label htmlFor="service" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaTooth className="mr-2 text-dental-primary" /> Service Required *
                       </label>
                       <select
                         id="service"
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         required
                       >
                         <option value="">Select a service</option>
@@ -144,8 +150,8 @@ export default function AppointmentPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="date" className="flex text-gray-700 mb-2 items-center">
-                        <FaCalendarAlt className="mr-2 text-teal-600" /> Preferred Date
+                      <label htmlFor="date" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaCalendarAlt className="mr-2 text-dental-primary" /> Preferred Date *
                       </label>
                       <input
                         type="date"
@@ -153,21 +159,21 @@ export default function AppointmentPage() {
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         required
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="time" className="flex text-gray-700 mb-2 items-center">
-                        <FaClock className="mr-2 text-teal-600" /> Preferred Time
+                      <label htmlFor="time" className="block text-gray-700 mb-3 font-medium flex items-center">
+                        <FaClock className="mr-2 text-dental-primary" /> Preferred Time *
                       </label>
                       <select
                         id="time"
                         name="time"
                         value={formData.time}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors"
                         required
                       >
                         <option value="">Select a time</option>
@@ -183,8 +189,8 @@ export default function AppointmentPage() {
                     </div>
                   </div>
 
-                  <div className="mb-6">
-                    <label htmlFor="message" className="block text-gray-700 mb-2">
+                  <div className="mb-8">
+                    <label htmlFor="message" className="block text-gray-700 mb-3 font-medium">
                       Additional Information
                     </label>
                     <textarea
@@ -193,7 +199,7 @@ export default function AppointmentPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={4}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full px-4 py-3 border border-dental-border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-primary transition-colors resize-none"
                       placeholder="Any specific concerns or requirements..."
                     ></textarea>
                   </div>
@@ -201,7 +207,7 @@ export default function AppointmentPage() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 w-full"
+                    className="btn btn-primary w-full py-4 text-lg font-semibold hover:shadow-lg transition-all duration-300 mb-4"
                   >
                     Request Appointment
                   </button>
@@ -219,9 +225,10 @@ export default function AppointmentPage() {
                     )}%0A%0AThank%20you!`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full text-center transition duration-300"
+                    className="btn w-full py-4 text-lg font-semibold flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white"
                   >
-                    📅 Book on WhatsApp
+                    <FaPhone className="text-white" />
+                    <span>Book on WhatsApp</span>
                   </a>
                 </form>
               )}
@@ -230,46 +237,82 @@ export default function AppointmentPage() {
 
           {/* Sidebar */}
           <div className="lg:w-1/3">
-            <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">Appointment Information</h2>
+            <div className="card p-8 mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Appointment Information</h2>
 
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">Before Your Visit</h3>
-                  <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                    <li>Arrive 15 minutes early for your first appointment</li>
-                    <li>Bring your insurance information</li>
-                    <li>Have a list of current medications ready</li>
-                    <li>Wear comfortable clothing</li>
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <FaCheck className="mr-2" /> Before Your Visit
+                  </h3>
+                  <ul className="space-y-2 text-blue-700">
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Arrive 15 minutes early for your first appointment
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Bring your insurance information
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Have a list of current medications ready
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Wear comfortable clothing
+                    </li>
                   </ul>
                 </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">What to Expect</h3>
-                  <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                    <li>Complete medical history review</li>
-                    <li>Oral examination and consultation</li>
-                    <li>Digital X-rays if necessary</li>
-                    <li>Detailed treatment plan discussion</li>
-                    <li>Professional cleaning for regular checkups</li>
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <FaCheck className="mr-2" /> What to Expect
+                  </h3>
+                  <ul className="space-y-2 text-green-700">
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Complete medical history review
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Oral examination and consultation
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Digital X-rays if necessary
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Detailed treatment plan discussion
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2">•</span>
+                      Professional cleaning for regular checkups
+                    </li>
                   </ul>
                 </div>
 
-                <div className="bg-teal-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold text-teal-800 mb-2">Cancellation Policy</h3>
-                  <p className="text-gray-600">
+                <div className="p-4 bg-yellow-50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-yellow-800 mb-3 flex items-center">
+                    <FaExclamationTriangle className="mr-2" /> Cancellation Policy
+                  </h3>
+                  <p className="text-yellow-700">
                     Please provide at least 24 hours notice for appointment cancellations to avoid fees.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-teal-500 to-teal-700 text-white rounded-lg shadow-lg p-8">
+            <div className="bg-gradient-to-r from-dental-primary to-dental-accent text-white rounded-xl shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Need Immediate Care?</h2>
-              <p className="mb-4">For dental emergencies, please call our office directly:</p>
-              <div className="text-2xl font-bold bg-white/20 p-4 rounded-lg text-center">
+              <p className="mb-4 opacity-90">For dental emergencies, please call our office directly:</p>
+              <div className="text-3xl font-bold bg-white/20 p-6 rounded-xl text-center mb-4">
                 0321-4591889
               </div>
+              <p className="text-center opacity-80">
+                Available 24/7 for dental emergencies
+              </p>
             </div>
           </div>
         </div>

@@ -82,6 +82,7 @@
       <div style="font-size:0.8rem;display:flex;align-items:center;gap:6px;">
           <span style="width:10px;height:10px;border-radius:50%;background:#4CAF50;display:inline-block;"></span>
           Online
+          <button id="close-chat-btn" style="margin-left:10px;background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;">✕</button>
       </div>
   `;
 
@@ -121,6 +122,8 @@
       max-height:100px;
       font-size:1rem;
       outline:none;
+      color:black;
+      background-color:white;
   `;
 
   const sendButton = document.createElement("button");
@@ -252,6 +255,7 @@
     chatContainer.style.display =
       chatContainer.style.display === "flex" ? "none" : "flex";
   });
+
   sendButton.addEventListener("click", sendMessage);
   messageInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -259,6 +263,17 @@
       sendMessage();
     }
   });
+
+  // Close button event listener - attach after DOM insertion
+  setTimeout(() => {
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    if (closeChatBtn) {
+      closeChatBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event bubbling
+        chatContainer.style.display = "none";
+      });
+    }
+  }, 100); // Small delay to ensure DOM is ready
 
   // --- Auto Popup ---
   setTimeout(() => {
